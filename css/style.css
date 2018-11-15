@@ -27,16 +27,206 @@ body {
     position: relative;
 }
 
+.full {
+    visibility: hidden;
+    opacity: 0;
+    z-index: -10000;
+    transform: translate(-50%, -50%) scale(.01);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(0,0,0,.6);
+    transition: all .15s;
+}
+
+.full-active {
+    visibility: visible;
+    opacity: 1;
+    z-index: 4000;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.game-intro {
+    width: 80vw;
+    height: 90vh;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2rem 4rem rgba(0,0,0, .2);
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+    padding: 2.5rem 4rem 0 4rem;
+}
+
+.game-heading {
+    font-size: 4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 5rem;
+}
+
+.game-question{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 350px;
+    padding: 1.2rem 2rem;
+    border-radius: 100px;
+    background-color: #EB4D4D;
+    margin-top: 5rem;
+    color: #fff;
+}
+
+.dice-mode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mode {
+    display: flex;
+    flex-direction: column;
+    flex: 50% 0 0;
+    /* justify-content: center; */
+    transition: all .3s;
+    align-items: center;
+    padding-top: .5rem;
+}
+
+
+.dice-mode > *:not(:first-child) {
+    margin-left: 5rem;
+}
+.rules-header {
+    font-size: 2.5rem;
+    font-weight: 600;
+    padding: 1rem;
+}
+.game-rules-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem .5rem;
+    height: 20.5rem;
+}
+
+.game-rules-items {
+    font-size: 1.2rem;
+    font-weight: 300;
+    padding: 0.45rem;
+    line-height: 130%;
+}
+
+/* .mode > *:not(:last-child) {
+    margin-right: 1.5rem;
+} */
+
+.rules-wrapper {
+    visibility: hidden;
+    z-index: -2000;
+    opacity: 0;
+    width: 90vw;
+    height: 90vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(.1);
+    background: rgba(255, 255, 255, .8);
+    border-radius: 10px;
+    transition: all .3s;
+    display: flex;
+    text-align: center;
+}
+
+.mode:not(:last-of-type) {
+     border-right: 1px solid black;
+}
+
+.rules-active {
+    z-index: 5000;
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+.game-single,
+.game-double {
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    font-weight: 400;
+    color: #fff;
+    background-color: #EB4D4D;
+    padding: .5rem 1.25rem;
+    border-radius: 100px;
+    text-decoration: none;
+}
+.single-die,.double-dice {
+    display: none;
+}
+
+.single-mode, .double-mode {
+
+    width: 4rem;
+    height: 4rem;
+}
+
+.games-inactive {
+    display: none;
+}
+
+.game-text {
+    font-size: 1.5rem;
+    line-height: 150%;
+    word-spacing: .25rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+
+
 .wrapper {
     width: 1000px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(.1);
     background-color: #fff;
     box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
     overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .5s;
 }
+
+.wrapper-active {
+    transform: translate(-50%, -50%) scale(1);
+    visibility: visible;
+    opacity: 1;
+    z-index: 6000;
+}
+
+.games {
+    transition: all .2s;
+}
+
+.wrapper-inactive {
+    position: relative;
+    z-index: -1000;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(.01);
+    transition: all .2s;
+} 
 
 .player-0-panel,
 .player-1-panel {
@@ -137,10 +327,12 @@ i {
     margin-top: -4px;
     transition: margin 0.3s;
 }
-
-.btn-new { top: 45px;}
+.btn-home { top: 20px;}
+.btn-new { top: 65px;}
+.btn-rules { top: 108px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
+
 
 .dice,
 .dice-two {
@@ -158,38 +350,40 @@ i {
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
 
 /* Form to set input winning */
-.form-input-wrapper {
+.score-input {
     position: absolute;
-    top: 5%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* z-index: 1000; */
+    transform: translateX(-50%);
+    top: 520px;
+    color: #555;
+    font-size: 15px;
+    font-family: 'Lato';
+    text-align: center;
+    padding: 10px;
+    width: 230px;
+    text-transform: uppercase;
 }
 
-.form-label {
-    display: block;
-    color: white;
-    font-size: 1.5rem;
-    text-transform: capitalize;
-    padding-right: 1rem;
+.score-input:focus { outline: none; }
+
+/***************************/
+/********Animation**********/
+/**************************/
+
+
+@keyframes pulsate {
+0% {
+    transform: scale(1);
+    box-shadow: none;
 }
 
-.form-input-text {
-    display: inline-block;
-    width: 20rem;
-    height: 2rem;
-    border-radius: 4px;
-    border: none;
-    padding: 0 2rem 0 2rem;
-    margin-right: 1rem;
+50% {
+    transform: scale(1.05);
+    box-shadow: 0 1rem 4rem rgba(0,0,0,.25);
 }
 
-.form-input-submit {
-    width: 7rem;
-    height: 2rem;
-    border-radius: 4px;
-    border: none;
+100% {
+    transform: scale(1);
+    box-shadow: none;
+}
 }

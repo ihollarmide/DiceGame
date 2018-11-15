@@ -3,13 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" >
-        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" >
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         
         <title>Dice Game</title>
     </head>
 
     <body>
+        <div class="full">&nbsp;</div>
         <div class="wrapper clearfix">
             <div class="player-0-panel active">
                 <div class="player-name" id="name-0">Player 1</div>
@@ -24,22 +25,62 @@
                 <div class="player-score" id="score-1">72</div>
                 <div class="player-current-box">
                     <div class="player-current-label">Current</div>
-                    <div class="player-current-score" id="current-1">0</div>
+                    <div class="player-current-score" id="current-1">11</div>
                 </div>
             </div>
-            
+
+            <button class="btn-home"><i class="ion-ios-home-outline"></i>Home</button>
             <button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button>
             <button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>
             <button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>
-            
+            <button class="btn-rules"><i class="ion-ios-book-outline"></i>Rules</button>
+
+
+            <input type="number" id="form-value" class="score-input" placeholder="Input Winning Score">
+
             <img src="img/dice-5.png" alt="Dice" class="dice">
             <img src="img/dice-5.png" alt="Dice" class="dice-two">
         </div>
-        
-        <form action="#" id="form-input" class="form-input-wrapper">
-            <label for="form-input" class="form-label">Input Winning Score</label>
-            <input type="number" id="form-value" class="form-input-text">
-        </form>
+
+        <div class="rules-wrapper">
+            <div class="mode">
+                <img src="img/single.png" alt="" class="single-mode">
+                <p class="rules-header">Single Die Mode</p>
+                <ul class="game-rules-list">
+                    <li class="game-rules-items">Choose a player to go first.</li>
+                    <li class="game-rules-items">That player throws a die and scores as many points as the total shown on the die providing the die doesn’t roll a 1</li>
+                    <li class="game-rules-items">The player may continue rolling and accumulating points (but risk rolling a 1) or end his turn.</li>
+                    <li class="game-rules-items">If the player rolls a 1 his turn is over, he loses all points he accumulated that turn, and he passes the die to the next player.</li>
+                    <li class="game-rules-items">Play passes from player to player until a winner is determined.</li>
+                    <li class="game-rules-items">The first player to accumulate 100 or the defined winning points wins the game.</li>
+                </ul>
+                <a href="" class="game-single">Play Single Die Mode</a>
+            </div>
+            <div class="mode">
+                <img src="img/double.png" alt="" class="double-mode">
+                <p class="rules-header">Double Dice Mode</p>
+                <ul class="game-rules-list">
+                    <li class="game-rules-items">Choose a player to go first.</li>
+                    <li class="game-rules-items">This variant is the same as Pig, except two standard dice are rolled.</li>
+                    <li class="game-rules-items"> If neither shows a 1, their sum is added to the turn total.</li>
+                    <li class="game-rules-items">If a single 1 is rolled, the player scores nothing and the turn ends.</li>
+                    <li class="game-rules-items">If two 1s are rolled, the player’s entire score is lost and their turn ends.</li>
+                    <li class="game-rules-items">Play passes from player to player until a winner is determined.</li>
+                    <li class="game-rules-items">The first player to accumulate 100 or the defined winning points wins the game.</li>
+                </ul>
+                <a href="" class="game-double">Play Double Dice Mode</a>
+            </div>
+        </div>
+        <div class="games" id="game-intro-wrapper">
+                <div class="game-intro">
+                    <h1 class="game-heading">Pig Dice Game</h1>
+                    <p class="game-text">
+                        Pig is a simple dice game first described in print by John Scarne in 1945. As with many games of folk origin, Pig is played with many rule variations. Pig is commonly used by mathematics teachers to teach probability concepts.<br>
+                        It is a simple dice game which in its basic form is playable with a single die or double dice. You win by being the first player to score 100 or the defined winning points.
+                    </p>
+                    <a href="" class="game-question">So how do you play Pig?</a>
+                </div>
+        </div>
 
         <script src="js/app.js"></script>
     </body>
